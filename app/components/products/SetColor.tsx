@@ -19,12 +19,13 @@ const SetColor: React.FC<SetColorProps> = ({
   return (
     <div>
       <div className="flex gap-4 items-center">
-        <span className="font-semibold">COLOR</span>
+        <span className="font-semibold">COLOR :</span>
         <div className="flex gap-1">
-          {images.map((image, index) => {
+          {images.map((image) => {
             return (
               <div
-                key={index}
+                onClick={() => handleColorSelect(image)}
+                key={image.color}
                 className={`h-7 w-7 rounded-full
                      border-teal-300
                      flex 
