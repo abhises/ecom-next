@@ -38,8 +38,8 @@ const ProductImage: React.FC<ProductImageProps> = ({
         sm:min-h-[400px]
         ">
         {product.images.map((image: any) => {
-          console.log("hello iam image", image.color);
-          console.log("Selected image color:", cartProduct.selectedImage.color);
+          // console.log("hello iam image", image.color);
+          // console.log("Selected image color:", cartProduct.selectedImage.color);
 
           return (
             <div

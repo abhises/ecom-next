@@ -16,7 +16,7 @@ const ListRating: React.FC<ListRatingProps> = ({ product }) => {
       <div className="text-sm mt-2">
         {product.reviews &&
           product.reviews.map((review: any) => {
-            console.log("review", review);
+            // console.log("review", review);
             return (
               <div key={review.id} className="max-w-[300px]">
                 <div className="flex gap-2 items-center">
