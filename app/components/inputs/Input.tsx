@@ -28,10 +28,10 @@ const Input: React.FC<InputProps> = ({
         id={id}
         {...register(id, { required })}
         placeholder=""
-        type="type"
+        type={type}
         disabled={disabled}
         className={`peer w-full p-4 pt-6 outline-none
-       by-white font-light border-2 rounded-md transition
+         bg-white font-light border-2 rounded-md transition
         disabled:opacity-70
         disabled:cursor-not-allowed
         ${errors[id] ? "border-rose-400" : "border-slate-300"}
@@ -41,7 +41,7 @@ const Input: React.FC<InputProps> = ({
       />
       <label
         htmlFor={id}
-        className="absolute cursor-text
+        className={`absolute cursor-text
        text-md 
        duration-150
        transform
@@ -53,8 +53,10 @@ const Input: React.FC<InputProps> = ({
        peer-placeholder-shown:sacle-100
        peer-placeholder-shown:translate-y-0
        peer-focus:scale-75
-       peer-focus:translate-x-4
-       ">
+       peer-focus:-translate-y-4
+               ${errors[id] ? "text-rose-500" : "text-slate-4 00"}
+
+       `}>
         {label}
       </label>
     </div>
