@@ -23,7 +23,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
       <div className="relative z-30">
         <div
           onClick={toggleOpen}
-          className="p-1 border-[1px]
+          className="p-2 border-[1px]
       border-slate-400 flex flex-row
       items-center
       gap-1
