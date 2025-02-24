@@ -35,11 +35,45 @@ export async function POST(request: Request) {
     products: items,
   };
   if (payment_intent_id) {
+    const currentIntent = await stripe.paymentIntents.retrieve(
+      payment_intent_id
+    );
+    if (currentIntent) {
+      const updated_intent = await stripe.paymentIntents.update(
+        payment_intent_id,
+        { amount: total }
+      );
+      const { existing_order, update_order } = await Promise.all([
+        prisma.order.findFirst({
+          where: { paymentIntentId: payment_intent_id },
+        }),
+        prisma.order.update({
+          where: { paymentIntentId: payment_intent_id },
+          data: {
+            amount: total,
+            products: items,
+          },
+        }),
+      ]);
+      if (!existing_order) {
+        return NextResponse.json(
+          { erorr: "Invalid payment intend" },
+          { status: 400 }
+        );
+        return NextResponse.json({ paymentIntent: updated_intent });
+      }
+    }
   } else {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: total,
       currency: "usd",
       automatic_payment_methods: { enabled: true },
     });
+
+    orderData.paymentIntentId = paymentIntent.id;
+    await prisma.order.create({
+      data: orderData,
+    });
+    return NextResponse.json(paymentIntent);
   }
 }
