@@ -34,4 +34,12 @@ export async function POST(request: Request) {
     paymentIntentId: "payment_intent_id",
     products: items,
   };
+  if (payment_intent_id) {
+  } else {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: total,
+      currency: "usd",
+      automatic_payment_methods: { enabled: true },
+    });
+  }
 }
