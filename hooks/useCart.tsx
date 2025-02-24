@@ -37,8 +37,7 @@ export const CartContextProvider = (props: Props) => {
   useEffect(() => {
     const cartItems: any = localStorage.getItem("eShopCartItems");
     const cProduct: CartProductType[] | null = JSON.parse(cartItems);
-    const eshopPaymentIntent: any = () =>
-      localStorage.getItem("eshopPaymentIntent");
+    const eshopPaymentIntent: any = localStorage.getItem("eshopPaymentIntent");
     const paymentIntent: string | null = JSON.parse(eshopPaymentIntent);
     setCartProducts(cProduct);
     setPaymentIntent(paymentIntent);
